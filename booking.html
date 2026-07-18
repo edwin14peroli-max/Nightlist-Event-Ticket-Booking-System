@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Tickets — Nightlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      colors: { ink: '#12121F', paper: '#F5F3EC', gold: '#F2B705', card: '#1C1D2E' },
+      fontFamily: { display: ['"Bebas Neue"', 'sans-serif'], sans: ['"Work Sans"', 'sans-serif'] }
+    } }
+  }
+</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-ink text-paper font-sans">
+
+  <header class="border-b border-white/10 sticky top-0 bg-ink/90 backdrop-blur z-30">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="font-display text-3xl tracking-wide text-gold">NIGHTLIST</a>
+      <nav class="hidden sm:flex gap-8 text-sm font-medium text-paper/70">
+        <a href="index.html" class="hover:text-paper transition">Events</a>
+        <a href="booking.html" class="text-gold">Book</a>
+        <a href="summary.html" class="hover:text-paper transition">My Tickets</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="max-w-3xl mx-auto px-6 pt-14 pb-24">
+    <p class="eyebrow">RESERVE YOUR SEATS</p>
+    <h1 class="font-display text-5xl sm:text-6xl mt-2 mb-8">Booking form</h1>
+
+    <!-- Selected event summary -->
+    <div id="selected-event" class="card p-5 mb-8 flex items-center justify-between">
+      <div>
+        <p class="text-paper/50 text-xs uppercase tracking-wider">Selected event</p>
+        <p id="sel-name" class="font-display text-2xl text-gold">—</p>
+        <p id="sel-meta" class="text-paper/60 text-sm mt-1">—</p>
+      </div>
+      <a href="index.html" class="text-sm text-paper/50 hover:text-gold transition">Change</a>
+    </div>
+
+    <form id="booking-form" novalidate class="space-y-5">
+      <div>
+        <label class="field-label" for="name">Full name</label>
+        <input id="name" name="name" type="text" class="field" placeholder="Jordan Lee" autocomplete="name">
+        <p class="error-msg" data-for="name"></p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label class="field-label" for="email">Email</label>
+          <input id="email" name="email" type="email" class="field" placeholder="you@example.com" autocomplete="email">
+          <p class="error-msg" data-for="email"></p>
+        </div>
+        <div>
+          <label class="field-label" for="phone">Phone number</label>
+          <input id="phone" name="phone" type="tel" class="field" placeholder="10-digit number" autocomplete="tel">
+          <p class="error-msg" data-for="phone"></p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label class="field-label" for="tickets">Number of tickets</label>
+          <input id="tickets" name="tickets" type="number" min="1" max="8" value="1" class="field">
+          <p class="error-msg" data-for="tickets"></p>
+        </div>
+        <div>
+          <label class="field-label" for="tier">Seating tier</label>
+          <select id="tier" name="tier" class="field">
+            <option value="general">General — base price</option>
+            <option value="premium">Premium — +50%</option>
+            <option value="vip">VIP — +120%</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Live price breakdown -->
+      <div class="card p-5 space-y-2">
+        <div class="flex justify-between text-sm text-paper/60">
+          <span>Price per ticket</span><span id="price-each">₹0</span>
+        </div>
+        <div class="flex justify-between text-sm text-paper/60">
+          <span>Tickets</span><span id="price-count">×1</span>
+        </div>
+        <div class="flex justify-between text-lg font-semibold pt-2 border-t border-white/10">
+          <span>Total</span><span id="price-total" class="text-gold">₹0</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary w-full">Confirm booking</button>
+      <p id="form-status" class="text-sm text-center min-h-[1.25rem]"></p>
+    </form>
+  </section>
+
+<script src="js/script.js"></script>
+<script>initBookingPage();</script>
+</body>
+</html>
